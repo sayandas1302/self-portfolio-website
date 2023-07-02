@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginstyles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/resume.png') }}">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Admin Login Page</h1>
+    <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud1">
+    <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud2">
+    
+    <!--login form-->
+    <form action="/adminlogin" method="post">
+        <h2>Login Information</h2>
+        <div class="formblock">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter Name">
+        </div>
+        <div class="formblock">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter Password">
+        </div>
+        <div class="formblock">
+            <button type="submit">Submit</button>
+        </div>
+        <div class="formblock">
+            <a href="/">Cancel</a>
+        </div>
+    </form>
+
+    {% if showalert %}
+    <script>
+        alert('Invalid username or password.');
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,79 @@
+body{
+    background-color: #DAFFFB;
+    font-family: sans-serif;
+}
+h1, h2{
+    font-family: Brush Script Std, cursive;
+    color: #64CCC5;
+    font-size: 70px;
+    text-align: center;
+}
+h2{
+    font-size: 25px;
+    text-align: left;
+}
+form{
+    position: relative;
+    width: 20%;
+    border: 1px solid #176B87;
+    border-radius: 15px;
+    margin: 10px auto;
+    padding: 50px 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    z-index: 2;
+}
+.formblock{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: 10px;
+}
+form .formblock label{
+    color: #64CCC5;
+    padding: 2px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+form .formblock input{
+    background-color: #DDDDDD;
+    border-radius: 7px;
+    height: 25px;
+    font-size: 20px;
+}
+form .formblock button, form .formblock a{
+    font-size: 20px;
+    border-radius: 7px;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #176B87;
+}
+form .formblock a{
+    text-decoration: none;
+    color: white;
+}
+form .formblock button:hover{
+    background-color: #64CCC5;
+}
+form .formblock a:hover{
+    background-color: #64CCC5;
+}
+#cloud1{
+    position: fixed;
+    top: 400px;
+    left: 200px;
+    width: 200px;
+    z-index: 1;
+}
+#cloud2{
+    position: fixed;
+    top: 100px;
+    right: 90px;
+    width: 350px;
+    z-index:1;
+}

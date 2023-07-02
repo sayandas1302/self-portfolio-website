@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/resume.png') }}">
+    <title>Portfolio</title>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <h1>{{ project.title }}</h1>
+        <h3>Welcome to the project section</h3>
+        <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud1" alt="cloud">
+        <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud2" alt="cloud">
+    </div>
+
+    <!--body-->
+    <div class="body">
+        <a href="/" class="home-btn">Home</a>
+
+        <!--project details-->
+        <div class="content">
+            <!--project overview-->
+            <h2>Project Overview</h2>
+            {% for para in project.overview %}
+            <p class="body-para">{{ para }}</p>
+            {% endfor %}
+            
+            <!--features-->
+            <h2>Main Features</h2>
+            <ul>
+                {% for feat in project.features %}
+                    <li>{{ feat }}</li>
+                {% endfor %}
+            </ul>
+
+            <!--image of the project theme-->
+            <div class="proj-img">
+                <img src="{{ url_for('static', filename='images/' ~ project.imgpath) }}" alt="project-Image">
+            </div>
+
+            <!--project link to GitHub-->
+            <p class="body-para">GitHub link to the Project: <a href="{{ project.ghlink }}", target="_blank">Click Here</a></p>
+        </div>
+
+        <!--goto button-->
+        <div class="gototop">
+            <a href="#"><img src="{{ url_for('static', filename='images/up-arrow.png') }}" alt="uparraow"></a>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <div class="list">
+            <div><a href="{{ params['gh_url'] }}" target="_blank">GitHub</a></div>
+            <div><a href="{{ params['li_url'] }}" target="_blank">Linked In</a></div>
+            <div><a href="/download">Resume</a></div>
+        </div>
+
+        <div class="contact">
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/email.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['mailid'] }}</p>
+            </div>
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/addrs.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['address'] }}</p>
+            </div>
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/phone.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['phone'] }}</p>
+            </div>
+        </div>
+
+        <div class="copyright">&copy{{ params["copyrighttext"] }}</div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

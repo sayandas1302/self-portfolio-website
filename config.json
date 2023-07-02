@@ -1,0 +1,15 @@
+{
+    "params": {
+        "uri": "mysql://root:@localhost/portfoliowebsite",
+
+        "gh_url": "https://github.com/sayandas1302",
+        "li_url": "https://www.linkedin.com/in/sayan-das-0b5493256/",
+
+        "mailid": "sayand2909@gmail.com",
+        "phone": "(+91) 9123-709-754",
+        "address": "382/B, Netaji Subhas Chandra Bose Road, Kolkata - 700047",
+        "copyrighttext": "2023, Built by Sayan Das (The website is viewed best on a 1366x768 screen)",
+
+        "upload_folder_loc": "./static/images/"
+    }
+}

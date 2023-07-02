@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/resume.png') }}">
+    <title>{% if action == 'Edit' %}Edit Post{% else %}Add Post{% endif %}</title>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <h1>Admin Panel</h1>
+        <h3>Logged in as {{ user }}</h3>
+        <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud1" alt="cloud">
+        <img src="{{ url_for('static', filename='images/cloud.png') }}" id="cloud2" alt="cloud">
+    </div>
+
+    <!--body-->
+    <div class="body">
+        <a href="/" class="home-btn">Home</a>
+
+        <!--navigation and logout-->
+        <div class="nav">
+            <div class="navsection" id="admlgn">
+                <div><a href="/logout">Logout</a></div>
+            </div>
+            <div class="navsection">
+                <div><a href="/adminpanel">Admin Panel Home</a></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>{{ action }} Dissertation</h2>
+                {% if action == 'Edit' %}
+                    <!--Edit project form-->
+                    <form action="{{ '/adminpanel/editdissertation/' ~ diss.stub }}" method="post" enctype="multipart/form-data">
+                        <h3>Dissertation Information</h3>
+                        <div class="formblock">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" value="{{ diss.title }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="stub">Stub</label>
+                            <input type="text" name="stub" value="{{ diss.stub }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="supervisor">Supervisor</label>
+                            <input type="text" name="supervisor" value="{{ diss.supervisor }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="during_course">During Course</label>
+                            <input type="text" name="during_course" value="{{ diss.duringcourse }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="institute">Institute</label>
+                            <input type="text" name="institute" value="{{ diss.institute }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="imgpath">Img Path</label>
+                            <input type="text" name="imgpath" value="{{ diss.imgpath }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="imginput">Insert Image</label>
+                            <input type="file" name="imginput" accept=".jpg, .png, .jpeg">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="ghlink">ghlink</label>
+                            <input type="text" name="ghlink" value="{{ diss.ghlink }}">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="overview">Overview</label>
+                            <textarea name="overview" id="" cols="30" rows="10">{{ diss.overview }}</textarea>
+                        </div>
+
+                        <div class="formblock">
+                            <button type="submit">Submit</button>
+                        </div>
+        
+                        <div class="formblock">
+                            <a href="/adminpanel">Cancel</a>
+                        </div>
+
+                        <div class="formblock" id="delete">
+                            <a href="{{ '/deletedissertation/' ~ diss.stub }}" id="deleteLink" onclick="confirmAction(event, 'deleteLink')">Delete Dissertation</a>
+                        </div>
+                    </form>
+                {% else %}
+                    <!--Add project form-->
+                    <form action="/adminpanel/adddissertation" method="post" enctype="multipart/form-data">
+                        <h3>Project Information</h3>
+                        <div class="formblock">
+                            <label for="title">Title</label>
+                            <input type="text" name="title">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="stub">Stub</label>
+                            <input type="text" name="stub">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="supervisor">Supervisor</label>
+                            <input type="text" name="supervisor">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="during_course">During Course</label>
+                            <input type="text" name="during_course">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="institute">Institute</label>
+                            <input type="text" name="institute">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="imgpath">Img Path</label>
+                            <input type="text" name="imgpath">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="imginput">Insert Image</label>
+                            <input type="file" name="imginput" accept=".jpg, .png, .jpeg">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="ghlink">ghlink</label>
+                            <input type="text" name="ghlink">
+                        </div>
+
+                        <div class="formblock">
+                            <label for="overview">Overview</label>
+                            <textarea name="overview" id="" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div class="formblock">
+                            <button type="submit">Submit</button>
+                        </div>
+        
+                        <div class="formblock">
+                            <a href="/adminpanel">Cancel</a>
+                        </div>
+                    </form>
+                {% endif %}
+        </div>
+        
+        <!--goto top button-->
+        <div class="gototop">
+            <a href="#"><img src="{{ url_for('static', filename='images/up-arrow.png') }}" alt="uparraow"></a>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <!--links-->
+        <div class="list">
+            <div><a href="{{ params['gh_url'] }}" target="_blank">GitHub</a></div>
+            <div><a href="{{ params['li_url'] }}" target="_blank">Linked In</a></div>
+            <div><a href="/download">Resume</a></div>
+        </div>
+
+        <!--contacts-->
+        <div class="contact">
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/email.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['mailid'] }}</p>
+            </div>
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/addrs.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['address'] }}</p>
+            </div>
+            <div class="contact-option">
+                <img src="{{ url_for('static', filename='images/phone.png') }}" alt="contact" class="img-contact">
+                <p class="contact-para">{{ params['phone'] }}</p>
+            </div>
+        </div>
+        <div class="copyright">&copy{{ params["copyrighttext"] }}</div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
